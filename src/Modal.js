@@ -2,26 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class Modal extends Component {
-    state = { display: this.props.isOpen };
-
-    open = () => {
-        this.setState({
-            display: true
-        })
-    };
-
-    close = () => {
-        this.setState({
-            display: false
-        })
-    }
-
     render() {
-        if (this.state.display) {
-            console.log(this.props);
+        if (this.props.isOpen) {
             return ReactDOM.createPortal(
                 <div className="modal-wrapper">
-                    <div onClick={this.close} className="modal-backdrop"></div>
+                    <div onClick={this.props.close} className="modal-backdrop"></div>
                     <div className="modal-box">
                         {this.props.children}
                     </div>
