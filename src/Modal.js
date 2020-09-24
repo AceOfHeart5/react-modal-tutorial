@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 class Modal extends Component {
-    state = { display: true };
+    state = { display: this.props.isOpen };
 
     open = () => {
         this.setState({
@@ -17,14 +18,15 @@ class Modal extends Component {
 
     render() {
         if (this.state.display) {
-            return (
+            console.log(this.props);
+            return ReactDOM.createPortal(
                 <div className="modal-wrapper">
                     <div onClick={this.close} className="modal-backdrop"></div>
                     <div className="modal-box">
                         {this.props.children}
                     </div>
                 </div>
-            )
+            , document.getElementById("root-modal"));
         } else {
             return null;
         }
